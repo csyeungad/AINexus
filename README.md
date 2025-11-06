@@ -1,4 +1,4 @@
-# ITECNexus
+# AINexus
 
 ## Introduction
 
