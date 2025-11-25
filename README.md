@@ -6,20 +6,58 @@ This project allows users to run Retrieval Augmentation Generation (RAG) using l
 
 RAG effectively combines retrieval and generation techniques, enabling the chatbot to deliver accurate and context-aware responses. Leveraging semantic search and keyword search, followed by a reranker to get the top most relevant documents as context for QA.
 
-## Local hosting AI model
+## Local hosting services (LLM, embedding models, vector database)
 
-You could use Ollama to host AI model locally through
-https://ollama.com/download
+1. Use docker to run the ollama service
 
-## Installation
+   You could use Ollama to host AI model locally through
+   https://ollama.com/download
 
-To install the required dependencies, run:
+   ``` bash
+   docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+   ```
 
-```sh
-conda create -n rag python==3.9.21 -y
-conda activate rag
-pip install -r requirements.txt
-```
+2. Use docker to run the qdrant vector database service
+
+   ``` bash
+   docker run -d \
+   --name qdrant \
+   -p 6333:6333 \
+   -v qdrant_data:/qdrant/storage \
+   qdrant/qdrant
+   ```
+
+## Installation and quick start
+
+1. Using conda
+
+   To install the required dependencies, run:
+
+   ```sh
+   conda create -n rag python==3.9.21 -y
+   conda activate rag
+   pip install -r requirements.txt
+   ```
+
+   Then start the software with
+
+   ```sh
+   streamlit run src\app.py
+   ```
+
+2. Using uv
+
+   To install the required dependencies, run:
+
+   ```sh
+   uv sync
+   ```
+
+   Then start the software with
+
+   ```sh
+   uv run streamlit run src\app.py
+   ```
 
 ## Set up `.env` configuration
 
@@ -50,13 +88,6 @@ KEYWORD_WEIGHT = 0.4
 # Reranker
 TOP_N = 6
 RERANKER_SCORE = 0.7
-```
-
-## Start the software
-
-```sh
-cd src
-streamlit run app.py
 ```
 
 ## Usage
