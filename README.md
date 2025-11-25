@@ -67,6 +67,8 @@ Set the following configuration parameters:
 # Model
 OLLAMA_URL = "http://localhost:11434"
 MODEL_NAME="qwen3_30B_A3B_ctx_8K" # LLM model for chat
+
+OLLAMA_EMBED_URL = "http://localhost:11435"
 EMBED_MODEL_NAME="nomic-embed-text" # Embedding model for documents
 
 # Qdrant vector database

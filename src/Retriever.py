@@ -8,7 +8,7 @@ from langchain.schema.document import Document
 from langchain_qdrant import QdrantVectorStore
 from database.QdrantDB import QdrantDB
 
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
+OLLAMA_EMBED_URL = os.getenv("OLLAMA_EMBED_URL", "http://localhost:11434")
 EMBED_MODEL_NAME = os.getenv("EMBED_MODEL_NAME")
 QDRANT_URL = os.getenv("QDRANT_URL")
 COLLECTION_NAME = os.getenv("COLLECTION_NAME")
@@ -25,7 +25,7 @@ TOP_N = int(os.getenv("TOP_N", 5))
 class Retriever:
     def __init__(self):
         # Initialize model and embeddings
-        self.embedding_function = OllamaEmbeddings(model=EMBED_MODEL_NAME, base_url=OLLAMA_URL)
+        self.embedding_function = OllamaEmbeddings(model=EMBED_MODEL_NAME, base_url=OLLAMA_EMBED_URL)
         # Custom class
         self.db = QdrantDB(collection_name=COLLECTION_NAME)
         # LangChain Qdrant class

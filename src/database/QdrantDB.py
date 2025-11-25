@@ -17,7 +17,7 @@ from langchain.schema.document import Document
 
 QDRANT_URL = os.getenv("QDRANT_URL")
 EMBED_MODEL_NAME = os.getenv("EMBED_MODEL_NAME")
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")  # Default to localhost if not set
+OLLAMA_EMBED_URL = os.getenv("OLLAMA_EMBED_URL", "http://localhost:11434")  # Default to localhost if not set
 COLLECTION_NAME = os.getenv("COLLECTION_NAME", "test")  # Default to localhost if not set
 NOLIMIT = 999999
 
@@ -27,7 +27,7 @@ class QdrantDB:
         self.collection_name = collection_name
         self.embedding_function = OllamaEmbeddings(
             model=EMBED_MODEL_NAME,
-            base_url=OLLAMA_URL,  # Use custom Ollama server URL
+            base_url=OLLAMA_EMBED_URL,  # Use custom Ollama server URL
         )
         self.client = QdrantClient(url=QDRANT_URL)
 
